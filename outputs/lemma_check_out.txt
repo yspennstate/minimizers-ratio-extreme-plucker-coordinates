@@ -1,0 +1,2 @@
+three-term failures: 0
+T_r translates of B for all 1<=k<n<=24: True

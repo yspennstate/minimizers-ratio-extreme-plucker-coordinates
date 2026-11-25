@@ -1,0 +1,7 @@
+k=3 n=6 points=1749 nonpositive=251  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -2.864e-14  holds=True
+k=3 n=7 points=1599 nonpositive=401  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -2.909e-14  holds=True
+k=3 n=8 points=1484 nonpositive=516  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -1.510e-14  holds=True
+k=4 n=8 points=1131 nonpositive=869  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -2.931e-14  holds=True
+k=3 n=9 points=1351 nonpositive=649  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -2.931e-14  holds=True
+k=4 n=9 points=944 nonpositive=1056  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -2.931e-14  holds=True
+k=5 n=10 points=592 nonpositive=1408  min over points and I of log[(G_I/G_J)/(P(I)/P(J))] = -4.352e-14  holds=True

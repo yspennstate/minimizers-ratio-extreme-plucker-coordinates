@@ -1,0 +1,6 @@
+k=3 n=5  V0 positive=True  minors/P spread=3.3e-16  E(V0)=1.6180339887  P(B)/P(J)=1.6180339887  starts used=19 of 25  best search=1.6180339888  best>=E0-1e-9: True
+k=3 n=6  V0 positive=True  minors/P spread=1.3e-15  E(V0)=3.0000000000  P(B)/P(J)=3.0000000000  starts used=16 of 25  best search=3.0000114605  best>=E0-1e-9: True
+k=3 n=7  V0 positive=True  minors/P spread=8.9e-16  E(V0)=4.0489173395  P(B)/P(J)=4.0489173395  starts used=14 of 25  best search=4.1673758221  best>=E0-1e-9: True
+k=3 n=8  V0 positive=True  minors/P spread=7.8e-16  E(V0)=5.8284271247  P(B)/P(J)=5.8284271247  starts used=12 of 25  best search=5.9871555943  best>=E0-1e-9: True
+k=4 n=7  V0 positive=True  minors/P spread=5.6e-16  E(V0)=4.0489173395  P(B)/P(J)=4.0489173395  starts used=14 of 25  best search=4.0956188421  best>=E0-1e-9: True
+k=4 n=8  V0 positive=True  minors/P spread=2.9e-15  E(V0)=9.6568542495  P(B)/P(J)=9.6568542495  starts used=12 of 25  best search=9.8976599207  best>=E0-1e-9: True

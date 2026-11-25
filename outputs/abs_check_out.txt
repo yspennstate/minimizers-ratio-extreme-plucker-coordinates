@@ -1,0 +1,2 @@
+k=3 n=6 E(V0)=3.00000000  best |minor| ratio over 60 generic starts=1.62852520  below E(V0): True
+k=3 n=7 E(V0)=4.04891734  best |minor| ratio over 60 generic starts=3.12817059  below E(V0): True
