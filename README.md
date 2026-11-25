@@ -1,6 +1,6 @@
 # Minimizers of the ratio of extreme Plücker coordinates on the positive Grassmannian
 
-Numerical checks for the paper of the same title by Yitzchak Shmalo.
+The paper of the same title by Yitzchak Shmalo (`paper/main.tex`, `paper/main.pdf`) and the scripts for its numerical checks.
 
 For a point V of the positive Grassmannian Gr>0(k,n), let E(V) be the ratio of its largest Plücker coordinate to its smallest. Ogranovich conjectured that E is minimized at the point V0 fixed by the cyclic shift, and proved this for k=2. The paper proves the conjecture for all k and n and determines all minimizers. They are the images of V0 under the positive column scalings in a compact convex polytope of dimension d − gcd(d, n/d), where d = gcd(k, n), so V0 is the unique minimizer exactly when d² divides n. For k=2 this settles the case 4 | n, which Ogranovich left open, and gives the exact range of his family of minimizers for n ≡ 2 (mod 4). The paper also shows that for (k,n) = (3,6) the version of the problem with absolute values of minors over all real matrices has a smaller minimum than the positive version.
 

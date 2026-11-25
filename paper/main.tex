@@ -1,0 +1,367 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xurl}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}{Problem}
+\setlength{\emergencystretch}{3em}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Minimizers of the ratio of extreme Pl\"ucker coordinates on the positive Grassmannian}
+\author{Yitzchak Shmalo$^{\,a}$\thanks{Email address:
+\texttt{yitzchak.shmalo@gmail.com} (Yitzchak Shmalo).}\\
+{\small $^{a}$Einstein Institute of Mathematics, The Hebrew University of
+Jerusalem, Givat Ram,}\\
+{\small Jerusalem, Israel}}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a point $V$ of the positive Grassmannian $\Gr_{>0}(k,n)$ let $E(V)$ be the ratio of its largest Pl\"ucker coordinate to its smallest. Ogranovich conjectured that $E$ is minimized at the point $V_0$ fixed by the cyclic shift, and proved this for $k=2$. We prove the conjecture for all $k$ and $n$ and determine all minimizers. They are the images of $V_0$ under the positive column scalings in a compact convex polytope of dimension $d-\gcd(d,n/d)$, where $d=\gcd(k,n)$, so $V_0$ is the unique minimizer exactly when $d^2$ divides $n$. For $k=2$ this settles the case $4\mid n$, which Ogranovich left open, and gives the exact range of his family of minimizers for $n\equiv2\pmod4$. We also show that for $(k,n)=(3,6)$ the version of the problem with absolute values of minors over all real matrices has a smaller minimum than the positive version.
+\end{abstract}
+
+\noindent\textit{Keywords:} positive Grassmannian, Pl\"ucker coordinates, cyclic symmetry, cluster algebra, extremal problem.
+
+\noindent\textit{2020 Mathematics Subject Classification:} 14M15, 15B48, 05E99, 52A40.
+
+\section{Introduction}\label{sec:intro}
+
+Let $1\le k<n$ and write $[n]=\{0,1,\dots,n-1\}$. For a real $k\times n$ matrix $X$ of rank $k$ and a $k$-subset $I\subset[n]$ let $\Delta_I(X)$ be the minor of $X$ in the columns $I$, taken in increasing order. The positive Grassmannian $\Gr_{>0}(k,n)$ is the set of row spaces of matrices all of whose maximal minors are positive. For $V\in\Gr_{>0}(k,n)$ the ratio
+\[
+E(V)=\frac{\max_I\Delta_I(V)}{\min_I\Delta_I(V)}
+\]
+does not depend on the matrix chosen to represent $V$. Berman, Gerasimenko and Zefirov \cite{BGZ}, studying error-correcting codes over the real numbers, asked, as described in \cite{O}, for the minimum over $2\times n$ matrices of the ratio of the largest to the smallest absolute value of a $2\times2$ minor. Ogranovich \cite{O} reduced that question to the minimization of $E$ on $\Gr_{>0}(2,n)$, solved it, and stated the problem in every rank.
+
+\begin{conjecture}[{\cite[Conjecture~1.2]{O}}]\label{conj:O}
+The point $V_0$ minimizes $E$ on $\Gr_{>0}(k,n)$.
+\end{conjecture}
+
+Here $V_0$ is the point of $\Gr_{>0}(k,n)$ fixed by the cyclic shift, found by Karp \cite{K}; it is described in Section~\ref{sec:cyclic}. Ogranovich proved Conjecture~\ref{conj:O} for $k=2$ \cite[Theorem~3.1]{O}, proved that $V_0$ is then the unique minimizer when $n$ is odd or $n=4$ \cite[Propositions~3.2 and~3.5]{O}, and showed that for $n\equiv2\pmod 4$ a one-parameter family of points near $V_0$ also minimizes $E$ \cite[Proposition~3.6]{O}. The case $4\mid n$, $n\ge8$, was left open.
+
+To state the results, let $J=\{0,1,\dots,k-1\}$ and
+\[
+B=\{\lfloor jn/k\rfloor:\ 0\le j<k\},\qquad P(I)=\prod_{a,b\in I,\ a<b}\sin\frac{\pi(b-a)}{n}.
+\]
+For $t\in\Z$ let $I+t$ be the set $\{i+t \bmod n: i\in I\}$, and for $V\in\Gr_{>0}(k,n)$ represented by a matrix $X$ let
+\[
+G_I(V)=\Big(\prod_{t=0}^{n-1}\Delta_{I+t}(X)\Big)^{1/n}
+\]
+be the geometric mean of the Pl\"ucker coordinates over the cyclic orbit of $I$, counted with multiplicity. The ratio $G_I(V)/G_J(V)$ depends only on $V$.
+
+\begin{theorem}\label{thm:main}
+For every $V\in\Gr_{>0}(k,n)$ and every $k$-subset $I\subset[n]$,
+\begin{equation}\label{eq:orbit}
+\frac{G_I(V)}{G_J(V)}\ \ge\ \frac{P(I)}{P(J)} .
+\end{equation}
+Consequently
+\begin{equation}\label{eq:value}
+E(V)\ \ge\ \frac{G_B(V)}{G_J(V)}\ \ge\ \frac{P(B)}{P(J)}\ =\ E(V_0)
+=\prod_{0\le s<u<k}\frac{\sin\big(\pi(\lfloor un/k\rfloor-\lfloor sn/k\rfloor)/n\big)}{\sin\big(\pi(u-s)/n\big)} ,
+\end{equation}
+and Conjecture~\ref{conj:O} holds.
+\end{theorem}
+
+For $x\in\R^n$ write $x(I)=\sum_{i\in I}x_i$, and let $D_x$ be the diagonal matrix with entries $e^{x_0},\dots,e^{x_{n-1}}$. If $X$ represents $V$, then $XD_x$ represents a point $V\cdot D_x$ of $\Gr_{>0}(k,n)$ with $\Delta_I(XD_x)=e^{x(I)}\Delta_I(X)$.
+
+\begin{theorem}\label{thm:class}
+Let $d=\gcd(k,n)$ and $g=\gcd(d,n/d)$, and let
+\[
+Q=\Big\{x\in\R^n:\ \sum_i x_i=0,\ \ \log P(J)\le x(I)+\log P(I)\le\log P(B)\ \text{ for every $k$-subset } I\Big\}.
+\]
+A point $V\in\Gr_{>0}(k,n)$ minimizes $E$ if and only if $V=V_0\cdot D_x$ for some $x\in Q$, and distinct points of $Q$ give distinct minimizers. The set $Q$ is a compact convex polytope of dimension $d-g$. It lies in the subspace $\mathcal{L}$ of vectors $x$ with $x_{i+d}=x_i$ for all $i$ (indices mod $n$) and $\sum_{0\le j<d,\ j\equiv s\ (\mathrm{mod}\ g)}x_j=0$ for every $s$, and contains a neighbourhood of $0$ in that subspace. In particular $V_0$ is the unique minimizer of $E$ if and only if $d^2\mid n$.
+\end{theorem}
+
+\begin{corollary}\label{cor:rank2}
+Let $k=2$, $n\ge3$ and $\alpha=\pi/n$. If $n$ is odd or $4\mid n$, then $V_0$ is the unique minimizer of $E$ on $\Gr_{>0}(2,n)$. If $n\equiv2\pmod4$, the minimizers are exactly the row spaces of the matrices with columns
+\[
+\rho^{(-1)^j/2}\,(\cos j\alpha,\ \sin j\alpha),\qquad j=0,1,\dots,n-1,
+\]
+for $\cos\alpha\le\rho\le1/\cos\alpha$.
+\end{corollary}
+
+The proof of Theorem~\ref{thm:main} uses a chart of $\Gr_{>0}(k,n)$ given by a cluster of Pl\"ucker coordinates. In logarithmic coordinates of the chart each $\log\Delta_I$ is convex, the averaged function $\log G_I-\log G_J$ is convex and invariant under the cyclic shift, and the shift has no eigenvalue $1$ on the tangent space at $V_0$; so $V_0$ is a critical point and therefore a global minimum. Theorem~\ref{thm:class} combines this with an inequality $G_I\le G_B$ obtained by sorting pairs of subsets, following Farber and Postnikov \cite{FP}, and with the three-term Pl\"ucker relations.
+
+The paper is organized as follows.
+\begin{center}
+\begin{tabular}{lp{9.4cm}l}
+\toprule
+Section & Content & Uses\\
+\midrule
+\ref{sec:cyclic} & the cyclic point and the extreme values of $P$ & --\\
+\ref{sec:chart} & the cluster chart and the proof of Theorem~\ref{thm:main} & Section~\ref{sec:cyclic}\\
+\ref{sec:sort} & sorting and the inequality $G_I\le G_B$ & Section~\ref{sec:cyclic}\\
+\ref{sec:min} & the proof of Theorem~\ref{thm:class} & Sections~\ref{sec:cyclic}--\ref{sec:sort}\\
+\ref{sec:rank2} & rank two & Section~\ref{sec:min}\\
+\ref{sec:open} & absolute values and open problems & Section~\ref{sec:cyclic}\\
+\ref{sec:comp} & the computer checks & all\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The cyclic point}\label{sec:cyclic}
+
+Let $\varepsilon=(-1)^{k-1}$ and let $\sigma$ be the linear map of $\R^n$ given by
+\[
+\sigma(x_0,x_1,\dots,x_{n-1})=(x_1,\dots,x_{n-1},\varepsilon x_0).
+\]
+It acts on $k\times n$ matrices row by row: the columns of $\sigma X$ are $x_1,\dots,x_{n-1},\varepsilon x_0$, where $x_i$ are the columns of $X$.
+
+\begin{lemma}\label{lem:shift}
+For every $k\times n$ matrix $X$ and every $k$-subset $I$, $\Delta_I(\sigma X)=\Delta_{I+1}(X)$. In particular $\sigma$ maps $\Gr_{>0}(k,n)$ to itself and $G_I(\sigma V)=G_I(V)$.
+\end{lemma}
+
+\begin{proof}
+If $n-1\notin I$, the columns of $\sigma X$ in $I$ are the columns of $X$ in $I+1$, in increasing order. If $n-1\in I$, they are the columns of $X$ in $(I+1)\setminus\{0\}$ in increasing order followed by $\varepsilon x_0$; moving $x_0$ to the front takes $k-1$ transpositions, and $(-1)^{k-1}\varepsilon=1$.
+\end{proof}
+
+For $0\le r<k$ let $\zeta_r=e^{i\pi(k-1-2r)/n}$ and $w_r=(1,\zeta_r,\zeta_r^2,\dots,\zeta_r^{n-1})\in\mathbb{C}^n$. Since $\zeta_r^n=e^{i\pi(k-1-2r)}=\varepsilon$, we have $\sigma w_r=\zeta_rw_r$. Since $\zeta_{k-1-r}=\bar\zeta_r$, the span of $w_0,\dots,w_{k-1}$ is closed under complex conjugation, so it is the complexification of a real $k$-dimensional subspace $V_0\subset\R^n$, spanned by the real and imaginary parts of the $w_r$. Thus $\sigma V_0=V_0$.
+
+\begin{lemma}\label{lem:V0}
+There is a constant $c>0$ such that, for a suitable matrix $X_0$ with row space $V_0$, $\Delta_I(X_0)=c\,P(I)$ for every $k$-subset $I$. In particular $V_0\in\Gr_{>0}(k,n)$, and $\Delta_{I+t}(V_0)=\Delta_I(V_0)$ for all $I$ and $t$.
+\end{lemma}
+
+\begin{proof}
+Let $W$ be the $k\times n$ matrix with rows $w_0,\dots,w_{k-1}$. Put $y_j=e^{-2\pi ij/n}$. Then $\zeta_r^j=e^{i\pi j(k-1)/n}\,y_j^{\,r}$, so for $I=\{i_1<\dots<i_k\}$ the Vandermonde determinant gives
+\[
+\Delta_I(W)=\prod_{j\in I}e^{i\pi j(k-1)/n}\prod_{a<b\in I}(y_b-y_a),\qquad
+y_b-y_a=-2i\,e^{-i\pi(a+b)/n}\sin\frac{\pi(b-a)}{n}.
+\]
+Each $j\in I$ lies in $k-1$ pairs, so $\prod_{a<b}e^{-i\pi(a+b)/n}=\prod_{j\in I}e^{-i\pi j(k-1)/n}$ and the phases cancel: $\Delta_I(W)=(-2i)^{k(k-1)/2}P(I)$. A real matrix $X_0$ with row space $V_0$ has the form $X_0=AW$ for an invertible complex $k\times k$ matrix $A$, so $\Delta_I(X_0)=\det(A)(-2i)^{k(k-1)/2}P(I)$. The factor is a nonzero complex number independent of $I$, and it is real because $\Delta_I(X_0)$ and $P(I)>0$ are real; changing the sign of a row of $X_0$ if necessary makes it positive. Finally $P(I+t)=P(I)$, because a pair $a<b$ of $I$ either stays a pair with the same difference or becomes a pair with difference $n-(b-a)$, and $\sin(\pi(n-m)/n)=\sin(\pi m/n)$.
+\end{proof}
+
+Karp \cite[Theorem~1.1]{K} proved that $V_0$ is the unique point of the totally nonnegative Grassmannian fixed by $\sigma$, and gave the formula of Lemma~\ref{lem:V0} \cite[(1.4)]{K}; we have included the computation because Lemma~\ref{lem:V0} is all that is used below.
+
+\begin{lemma}\label{lem:extremes}
+For every $k$-subset $I$, $P(J)\le P(I)\le P(B)$. Equality $P(I)=P(J)$ holds only if $I$ is a cyclic interval $J+t$. Equality $P(I)=P(B)$ holds only if $I+n/d=I$, where $d=\gcd(k,n)$.
+\end{lemma}
+
+\begin{proof}
+Write $I=\{i_0<i_1<\dots<i_{k-1}\}$ and extend the indices by $i_{t+k}=i_t+n$. The cyclic gaps $\gamma_t=i_{t+1}-i_t$ ($0\le t<k$) are positive integers with sum $n$, and for $s<u$ the difference $i_u-i_s$ is $\gamma_s+\dots+\gamma_{u-1}$. So $\log P(I)=\sum_{0\le s<u<k}\log\sin\big(\tfrac{\pi}{n}(\gamma_s+\dots+\gamma_{u-1})\big)$. Regard this as a function of real $\gamma$ on the simplex $\Sigma=\{\gamma_t\ge1,\ \sum_t\gamma_t=n\}$. On $\Sigma$ every sum of at most $k-1$ of the $\gamma_t$ lies in $[1,n-1]$, so every term is concave, and the terms with $u=s+1$ make the sum strictly concave. A strictly concave function on a polytope attains its minimum only at vertices. The vertices of $\Sigma$ have all gaps equal to $1$ but one, and they correspond to the cyclic intervals; by Lemma~\ref{lem:V0} they all have the value $P(J)$.
+
+For the upper bound, every unordered pair $\{i_s,i_u\}$, $s<u$, appears in the double sum
+\[
+2\log P(I)=\sum_{h=1}^{k-1}\ \sum_{t=0}^{k-1}\log\sin\frac{\pi(i_{t+h}-i_t)}{n}
+\]
+twice: as $(t,h)=(s,u-s)$ with difference $i_u-i_s$, and as $(t,h)=(u,k-u+s)$ with difference $n-(i_u-i_s)$. For fixed $h$ the integers $\delta_t=i_{t+h}-i_t$ lie in $[1,n-1]$ and have sum $hn$. Since $f(m)=\log\sin(\pi m/n)$ is strictly concave, moving one unit from $\delta_s$ to $\delta_t$ when $\delta_s\ge\delta_t+2$ strictly increases $\sum_tf(\delta_t)$; hence $\sum_tf(\delta_t)$ is at most its value when every $\delta_t$ is $\lfloor hn/k\rfloor$ or $\lceil hn/k\rceil$, with equality only in that case. For $I=B$ the differences $\lfloor (t+h)n/k\rfloor-\lfloor tn/k\rfloor$ have this property for every $h$, so $P(B)$ is the maximum. If $P(I)=P(B)$, the differences are balanced for every $h$. When $d>1$, take $h=k/d<k$: then $hn/k=n/d$ is an integer, so $i_{t+k/d}=i_t+n/d$ for every $t$, that is, $I+n/d=I$. When $d=1$ the claim is empty.
+\end{proof}
+
+By Lemmas~\ref{lem:V0} and~\ref{lem:extremes}, $E(V_0)=P(B)/P(J)$, which is the product in \eqref{eq:value}.
+
+\section{The cluster chart and the proof of Theorem~\ref{thm:main}}\label{sec:chart}
+
+Let $\widetilde{\Gr}_{>0}(k,n)\subset\R^{\binom{[n]}{k}}$ be the set of Pl\"ucker vectors $(\Delta_I(X))_I$ of real $k\times n$ matrices $X$ with all maximal minors positive; it is the cone over $\Gr_{>0}(k,n)$. Fix a cluster $\mathcal{C}$, a set of $k$-subsets of $[n]$ as defined in \cite[Section~4.1]{ALS}. By the result of Oh, Postnikov and Speyer stated as \cite[Proposition~4.1]{ALS}, clusters exist, each has $k(n-k)+1$ elements, and each contains the Grassmann necklace, which for $\Gr(k,n)$ consists of the cyclic intervals $J+t$, $t\in\Z$. By \cite[Proposition~4.3]{ALS} every Pl\"ucker coordinate $\Delta_I$ is a Laurent polynomial $L_I$ in the coordinates $\Delta_C$, $C\in\mathcal{C}$, with positive coefficients. The cone over the Grassmannian has dimension $k(n-k)+1$ and the field of rational functions on it is generated by the Pl\"ucker coordinates, hence by the elements of $\mathcal{C}$; so these are algebraically independent.
+
+\begin{lemma}\label{lem:chart}
+The map $\Phi:\widetilde{\Gr}_{>0}(k,n)\to\R_{>0}^{\mathcal{C}}$, $\Phi(p)=(p_C)_{C\in\mathcal{C}}$, is a bijection with inverse $L(y)=(L_I(y))_I$. Both maps are smooth, and $L(\lambda y)=\lambda L(y)$ for $\lambda>0$.
+\end{lemma}
+
+\begin{proof}
+Let $R$ be a quadratic Pl\"ucker relation. Since $R(\Delta)=0$ on the cone and $\Delta_I=L_I(\Delta_{\mathcal{C}})$ in its function field, $R(L(y))$ vanishes as a Laurent polynomial in algebraically independent variables, hence for every $y$ in the torus. The quadratic Pl\"ucker relations cut out the cone over the Grassmannian, so for $y\in\R^{\mathcal{C}}_{>0}$ the vector $L(y)$, whose coordinates are positive, lies in $\widetilde{\Gr}_{>0}(k,n)$. We have $\Phi(L(y))=y$ because $L_C(y)=y_C$ for $C\in\mathcal{C}$, and $L(\Phi(p))=p$ because the Laurent identities hold at every point where the elements of $\mathcal{C}$ do not vanish. Homogeneity follows from $\Phi(\lambda p)=\lambda\Phi(p)$.
+\end{proof}
+
+For $z\in\R^{\mathcal{C}}$ put $p(z)=L(e^z)$, where $e^z=(e^{z_C})_{C\in\mathcal{C}}$, and $\ell_I(z)=\log L_I(e^z)$. If $L_I(y)=\sum_mc_my^m$ with $c_m>0$, then $\ell_I(z)=\log\sum_mc_me^{\langle m,z\rangle}$. By Lemma~\ref{lem:chart}, $z\mapsto p(z)$ identifies $\R^{\mathcal{C}}$ with the cone, $z+s\mathbf{1}$ corresponds to $e^sp(z)$, and $\R^{\mathcal{C}}/\R\mathbf{1}$ is identified with $\Gr_{>0}(k,n)$, an open subset of the real Grassmannian.
+
+\begin{lemma}\label{lem:lse}
+Each $\ell_I$ is convex, and $\ell_C(z)=z_C$ for $C\in\mathcal{C}$. If $\ell_I$ is affine on a segment $\{z+su:\ 0\le s\le1\}$ with $u\ne0$, then $\langle m,u\rangle$ takes the same value $w$ for all $m$ with $c_m>0$, and $\ell_I(z'+su)=\ell_I(z')+sw$ for all $z'\in\R^{\mathcal{C}}$ and $s\in\R$.
+\end{lemma}
+
+\begin{proof}
+The second derivative of $s\mapsto\ell_I(z+su)$ is the variance of $\langle m,u\rangle$ for the probability weights proportional to $c_me^{\langle m,z+su\rangle}$, all of which are positive. It vanishes identically on the segment only if $\langle m,u\rangle$ is constant on the support, and then $L_I(e^{z'+su})=e^{sw}L_I(e^{z'})$.
+\end{proof}
+
+For a $k$-subset $I$ define
+\[
+h_I(z)=\frac1n\sum_{t=0}^{n-1}\ell_{I+t}(z)-\frac1n\sum_{t=0}^{n-1}\ell_{J+t}(z)=\log\frac{G_I(p(z))}{G_J(p(z))} .
+\]
+The second sum is linear because the cyclic intervals lie in $\mathcal{C}$, so $h_I$ is convex. It satisfies $h_I(z+s\mathbf{1})=h_I(z)$, so it is a smooth function on $\Gr_{>0}(k,n)$, and by Lemma~\ref{lem:shift} it is invariant under $\sigma$.
+
+\begin{lemma}\label{lem:critical}
+The differential of $h_I$, as a function on $\Gr_{>0}(k,n)$, vanishes at $V_0$.
+\end{lemma}
+
+\begin{proof}
+Since $\sigma V_0=V_0$ and $h_I\circ\sigma=h_I$, the differential $\theta=dh_I(V_0)$ satisfies $\theta\circ(d\sigma_{V_0}-1)=0$, where $d\sigma_{V_0}$ acts on $T_{V_0}\Gr(k,n)=\mathrm{Hom}(V_0,\R^n/V_0)$ by $T\mapsto\bar\sigma\circ T\circ(\sigma|_{V_0})^{-1}$, with $\bar\sigma$ the map induced on $\R^n/V_0$. After complexification the eigenvalues of $d\sigma_{V_0}$ are the quotients $\mu/\lambda$ with $\lambda$ an eigenvalue of $\sigma$ on $V_0$ and $\mu$ an eigenvalue of $\bar\sigma$. Since $\sigma^n=\varepsilon$ and the vectors $e_0,\sigma e_0,\dots,\sigma^{n-1}e_0$ form a basis, the characteristic polynomial of $\sigma$ is $z^n-\varepsilon$, whose $n$ roots are distinct. The eigenvalues of $\sigma$ on $V_0$ are $\zeta_0,\dots,\zeta_{k-1}$, and those of $\bar\sigma$ are the other $n-k$ roots, so $\mu/\lambda\ne1$. Hence $d\sigma_{V_0}-1$ is invertible and $\theta=0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+In the chart, $h_I$ is a differentiable convex function on $\R^{\mathcal{C}}$ whose gradient vanishes at every $z_0$ with $p(z_0)$ representing $V_0$ (Lemma~\ref{lem:critical}). So $h_I(z)\ge h_I(z_0)$ for every $z$. By Lemma~\ref{lem:V0}, $G_I(V_0)=\Delta_I(V_0)$ up to the common factor, so $h_I(z_0)=\log(P(I)/P(J))$, which is \eqref{eq:orbit}. For \eqref{eq:value}, a geometric mean of Pl\"ucker coordinates lies between their minimum and maximum, so $E(V)\ge G_B(V)/G_J(V)$, and the rest is \eqref{eq:orbit} for $I=B$ together with $E(V_0)=P(B)/P(J)$ from Section~\ref{sec:cyclic}.
+\end{proof}
+
+\section{Sorting and the inequality \texorpdfstring{$G_I\le G_B$}{G\_I <= G\_B}}\label{sec:sort}
+
+Following \cite{FP}, two $k$-subsets $I,J'$ of $[n]$ form a sorted pair if, listing their multiset union as $a_1\le a_2\le\dots\le a_{2k}$, one of them is $\{a_1,a_3,\dots,a_{2k-1}\}$ and the other is $\{a_2,a_4,\dots,a_{2k}\}$; these two sets are the sorting of the pair. By \cite[Corollary~6.5]{FP}, if $I,J'$ is not sorted and $I'',J''$ is its sorting, then $\Delta_{I''}\Delta_{J''}>\Delta_I\Delta_{J'}$ at every point of $\Gr_{>0}(k,n)$.
+
+For a set $S\subset[n]$ and $0\le v\le n$ let $c_S(v)=|S\cap[0,v)|$. If $S=\{s_1<\dots<s_k\}$ and $S'=\{s'_1<\dots<s'_k\}$ satisfy $s_1\le s'_1\le s_2\le\dots\le s_k\le s'_k$, then $0\le c_S(v)-c_{S'}(v)\le1$ for all $v$: if $s'_q<v$ then $s_q<v$, and if $s_p<v$ then $s'_{p-1}<v$.
+
+\begin{lemma}\label{lem:sorted}
+Let $S_0,\dots,S_{N-1}$ be $k$-subsets of $[n]$ that are pairwise sorted, and let $u_0\le u_1\le\dots\le u_{kN-1}$ be their multiset union. Then, as multisets, $\{S_r\}=\{T_r:0\le r<N\}$ with $T_r=\{u_r,u_{r+N},\dots,u_{r+(k-1)N}\}$.
+\end{lemma}
+
+\begin{proof}
+By the remark above, for each pair one counting function dominates the other pointwise and they differ by at most one. Pointwise domination is transitive, so we may number the sets with $c_{S_0}\ge c_{S_1}\ge\dots\ge c_{S_{N-1}}$, and then $c_{S_0}-c_{S_{N-1}}\le1$. For each $v$ the numbers $c_{S_r}(v)$ are therefore non-increasing in $r$, take at most two consecutive values, and add up to $m(v)=|\{m:\ u_m<v\}|$; this forces $c_{S_r}(v)=\lceil(m(v)-r)/N\rceil$. The same formula holds for $c_{T_r}(v)=|\{j<k:\ r+jN<m(v)\}|$. A set $S$ is determined by $c_S$, so $S_r=T_r$.
+\end{proof}
+
+\begin{proposition}\label{prop:GB}
+For every $V\in\Gr_{>0}(k,n)$ and every $k$-subset $I$, $G_I(V)\le G_B(V)$.
+\end{proposition}
+
+\begin{proof}
+Fix $V$. Start with the collection $(I+t)_{0\le t<n}$, whose multiset union contains each element of $[n]$ exactly $k$ times, and repeatedly replace an unsorted pair by its sorting. The union does not change, and by \cite[Corollary~6.5]{FP} the product of the Pl\"ucker coordinates of the collection at $V$ increases strictly, so no collection repeats and the process stops at a pairwise sorted collection. Here $u_m=\lfloor m/k\rfloor$ and $N=n$, so by Lemma~\ref{lem:sorted} the final collection is $(T_r)_{0\le r<n}$ with $T_r=\{\lfloor(r+jn)/k\rfloor:\ 0\le j<k\}$, and
+\begin{equation}\label{eq:sortineq}
+\prod_{t=0}^{n-1}\Delta_{I+t}(V)\le\prod_{r=0}^{n-1}\Delta_{T_r}(V).
+\end{equation}
+Each $T_r$ is a translate of $B$. Indeed $T_{r+qk}=T_r+q$, so let $0\le r<k$, and write $k'=k/d$, $n'=n/d$ and $r=md+r_0$ with $0\le m<k'$, $0\le r_0<d$. Since $(r+jn)/k=(m+jn')/k'+r_0/k$ and $r_0/k<1/k'$, we get $\lfloor(r+jn)/k\rfloor=\lfloor(m+jn')/k'\rfloor$. As $\gcd(k',n')=1$ there are integers $v,e$ with $m=vn'-ek'$, and then $\lfloor(m+jn')/k'\rfloor=\lfloor(j+v)n'/k'\rfloor-e$. Since $\lfloor(j+k)n'/k'\rfloor=\lfloor jn'/k'\rfloor+n$ and $\lfloor jn'/k'\rfloor=\lfloor jn/k\rfloor$, the residues mod $n$ of $\lfloor(j+v)n'/k'\rfloor$, $0\le j<k$, form $B$, so $T_r=B-e$.
+
+Inequality \eqref{eq:sortineq} holds at every point, in particular at $\sigma^sV$. By Lemma~\ref{lem:shift} its left side does not change and its right side becomes $\prod_r\Delta_{T_r+s}(V)$. Taking the geometric mean over $s=0,\dots,n-1$ and writing $T_r=B+e_r$,
+\[
+G_I(V)^n\le\prod_{r=0}^{n-1}\Big(\prod_{s=0}^{n-1}\Delta_{B+e_r+s}(V)\Big)^{1/n}=G_B(V)^n.\qedhere
+\]
+\end{proof}
+
+\section{The proof of Theorem~\ref{thm:class}}\label{sec:min}
+
+\begin{proposition}\label{prop:rigid}
+If $V\in\Gr_{>0}(k,n)$ satisfies $G_B(V)/G_J(V)=P(B)/P(J)$, then $V=V_0\cdot D_x$ for some $x\in\R^n$. Conversely $G_I(V_0\cdot D_x)/G_J(V_0\cdot D_x)=P(I)/P(J)$ for all $x$ and $I$.
+\end{proposition}
+
+\begin{proof}
+The converse holds because $\sum_t x(I+t)=k\sum_ix_i$ for every $I$. For $k=1$ every point of $\Gr_{>0}(1,n)$ is $V_0\cdot D_x$, and for $k=n-1$ so is every point of $\Gr_{>0}(n-1,n)$, since the $n$ Pl\"ucker coordinates of a hyperplane can be prescribed freely and $\Delta_{[n]\setminus\{i\}}(XD_x)=e^{\sum x-x_i}\Delta_{[n]\setminus\{i\}}(X)$. So let $2\le k\le n-2$.
+
+Let $z_0,z_1$ be chart points of $V_0,V$ and $u=z_1-z_0$. By Theorem~\ref{thm:main}, $h_B\ge h_B(z_0)$ everywhere, and $h_B(z_1)=h_B(z_0)$ by assumption, so the convex function $h_B$ is constant on the segment $[z_0,z_1]$. Then $\sum_t\ell_{B+t}$ is affine there, and since each $\ell_{B+t}$ is convex, each is affine there. By Lemma~\ref{lem:lse} every $\ell_{B+t}$ is affine on the whole line $z_0+\R u$, so $h_B$ is affine on the line; being bounded below, it is constant on it. For any $I$, $h_I-h_B=\log(G_I/G_B)\le0$ by Proposition~\ref{prop:GB}, and on the line it is convex, being a convex function minus a constant; a convex function bounded above on a line is constant. Hence $\sum_t\ell_{I+t}$ is affine on the line, and as before each $\ell_I$ is affine there: $\ell_I(z_0+su)=\ell_I(z_0)+sw_I$. Thus $\Delta_I(p(z_0+su))=e^{sw_I}\Delta_I(p(z_0))$ for all $I$ and $s$.
+
+Let $S$ be a $(k-2)$-subset and $i_1<i_2<i_3<i_4$ elements outside $S$, and write $S_{pq}$ for $S\cup\{i_p,i_q\}$. On $\Gr_{>0}(k,n)$ the three-term Pl\"ucker relation \cite[(3.1)]{ALS} reads $\Delta_{S_{13}}\Delta_{S_{24}}=\Delta_{S_{12}}\Delta_{S_{34}}+\Delta_{S_{14}}\Delta_{S_{23}}$. Along the line all six coordinates are positive multiples of exponentials in $s$; if $A_1e^{\lambda_1s}=A_2e^{\lambda_2s}+A_3e^{\lambda_3s}$ for all $s$ with $A_1,A_2,A_3>0$, then $\lambda_1=\lambda_2=\lambda_3$ (divide by $e^{\lambda_1s}$ and let $s\to\pm\infty$). Hence the three sums $w_{S_{13}}+w_{S_{24}}$, $w_{S_{12}}+w_{S_{34}}$, $w_{S_{14}}+w_{S_{23}}$ are equal. As this holds for every $4$-set outside $S$, for distinct $i,j,l,l'\notin S$ we get $w_{S\cup\{i,l\}}-w_{S\cup\{j,l\}}=w_{S\cup\{i,l'\}}-w_{S\cup\{j,l'\}}$. So $\delta_{ij}=w_{T\cup\{i\}}-w_{T\cup\{j\}}$ does not change when one element of the $(k-1)$-set $T\subset[n]\setminus\{i,j\}$ is replaced by another; since $k\le n-2$, any two such $T$ are connected by such replacements, and $\delta_{ij}$ depends only on $i,j$. Taking $T$ disjoint from $\{i,j,l\}$, which is possible as $k-1\le n-3$, gives $\delta_{ij}+\delta_{jl}=\delta_{il}$. Put $x_i=\delta_{i0}$ (so $x_0=0$). Then $w_{T\cup\{i\}}-x_i=w_{T\cup\{j\}}-x_j$, so $w_I-x(I)$ is unchanged by exchanging one element of $I$, hence equal to a constant $c_0$ for all $I$. At $s=1$ this gives $\Delta_I(V)=e^{c_0}e^{x(I)}\Delta_I(V_0)$, that is, $V=V_0\cdot D_x$.
+\end{proof}
+
+For the dimension count we need the following lemma. Recall $k'=k/d$ and $n'=n/d$, so $\gcd(k',n')=1$ and $g=\gcd(d,n')$, and regard a vector $x$ with $x_{i+d}=x_i$ as a function on $\Z/d$.
+
+\begin{lemma}\label{lem:fourier}
+Let $x$ satisfy $x_{i+d}=x_i$ for all $i$. Then $x(B+t)=0$ for all $t$ if and only if $\sum_{0\le j<d,\ j\equiv s\ (\mathrm{mod}\ g)}x_j=0$ for every $s$. These $x$ form a space of dimension $d-g$.
+\end{lemma}
+
+\begin{proof}
+Writing $j=hk'+r$ with $0\le h<d$, $0\le r<k'$ gives $\lfloor jn/k\rfloor=hn'+\lfloor rn'/k'\rfloor$, so $B=\{hn'+\lfloor rn'/k'\rfloor\}$ and $F(t)=x(B+t)=\sum_{h,r}x(hn'+\lfloor rn'/k'\rfloor+t)$ is a convolution on $\Z/d$. For $\zeta^d=1$ let $\hat x(\zeta)=\sum_{t\in\Z/d}x(t)\zeta^{-t}$. Then $\hat F(\zeta)=\hat x(\zeta)\,\Theta(\zeta)$ with
+\[
+\Theta(\zeta)=\Big(\sum_{h=0}^{d-1}\zeta^{hn'}\Big)\Big(\sum_{r=0}^{k'-1}\zeta^{\lfloor rn'/k'\rfloor}\Big).
+\]
+We claim that $\Theta(\zeta)\ne0$ exactly when the order $m$ of $\zeta$ divides $g$. The first factor is $d$ if $\zeta^{n'}=1$ and $0$ otherwise, and $\zeta^{n'}=1$ means $m\mid n'$; with $m\mid d$ this is $m\mid g$. Let $m\mid g$. Then $m\mid n'$, so $\gcd(k',m)=1$; let $\kappa$ be an inverse of $k'$ modulo $m$. With $\rho_r$ the remainder of $rn'$ mod $k'$, we have $k'\lfloor rn'/k'\rfloor=rn'-\rho_r\equiv-\rho_r\pmod m$, so $\zeta^{\lfloor rn'/k'\rfloor}=\eta^{\rho_r}$ with $\eta=\zeta^{-\kappa}$, a primitive $m$-th root of unity. As $r$ runs over $0,\dots,k'-1$ so does $\rho_r$, since $\gcd(k',n')=1$; the second factor is $\sum_{\rho=0}^{k'-1}\eta^\rho$, which is $k'$ if $m=1$ and $(1-\eta^{k'})/(1-\eta)$ otherwise, and $\eta^{k'}=\zeta^{-1}\ne1$. This proves the claim. Hence $F=0$ if and only if $\hat x(\zeta)=0$ whenever $\zeta^g=1$, which says that $x$ is orthogonal to all functions on $\Z/d$ of period $g$, that is, the sums over residue classes mod $g$ vanish. The space of such $x$ has dimension $d-g$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:class}]
+Let $V$ minimize $E$. By Theorem~\ref{thm:main} all inequalities in \eqref{eq:value} are equalities, so $G_B(V)/G_J(V)=P(B)/P(J)$ and Proposition~\ref{prop:rigid} gives $V=V_0\cdot D_x$. Replacing $x$ by $x-(\tfrac1n\sum_ix_i)\mathbf{1}$ does not change the point, so we may assume $\sum_ix_i=0$. Then $\Delta_I(V)$ is proportional to $e^{x(I)}P(I)$, and $\psi(I)=x(I)+\log P(I)$ has average $\log P(I)$ over each orbit $I+t$, because $\sum_tx(I+t)=k\sum_ix_i=0$. Hence $\max_I\psi\ge\log P(B)$ and $\min_I\psi\le\log P(J)$, and $E(V)=E(V_0)$ holds if and only if both are equalities, that is, $x\in Q$. The same computation shows that $V_0\cdot D_x$ minimizes $E$ for every $x\in Q$. If $V_0\cdot D_x=V_0\cdot D_y$, then $x(I)-y(I)$ is independent of $I$; since $k<n$, comparing $T\cup\{i\}$ and $T\cup\{j\}$ gives $x_i-y_i=x_j-y_j$, and $\sum x=\sum y$ gives $x=y$. The same comparison shows that the differences $x_i-x_j$ are bounded on $Q$, so $Q$ is bounded, and it is closed and convex, being cut out by finitely many linear inequalities.
+
+Let $x\in Q$. Then $x(J+t)\ge0$ for all $t$ and $\sum_tx(J+t)=0$, so $x(J+t)=0$ and therefore $x_{t+k}=x(J+t+1)-x(J+t)+x_t=x_t$; thus $x_{i+d}=x_i$. Likewise $x(B+t)\le0$ with sum $0$ gives $x(B+t)=0$. By Lemma~\ref{lem:fourier}, $Q$ lies in the subspace $\mathcal{L}$ of the statement, of dimension $d-g$. Conversely, let $x\in\mathcal{L}$. A cyclic interval contains $k'$ full periods, so $x(J+t)=k'\sum_{j<d}x_j=0$. If $I+n'=I$, then $I$ is a union of cosets of the subgroup generated by $n'$ in $\Z/n$, which has order $d$; the map $h\mapsto hn'$ from $\Z/d$ to itself has image $g\Z/d\Z$ with fibres of size $g$, so the sum of $x$ over a coset $c+\langle n'\rangle$ is $g$ times the sum of $x_j$ over $0\le j<d$, $j\equiv c\pmod g$, which is $0$. By Lemma~\ref{lem:extremes} the constraints of $Q$ that are tight at $0$ are those with $P(I)=P(J)$ or $P(I)=P(B)$, and these hold with equality on all of $\mathcal{L}$; the others are strict at $0$. Hence $Q$ contains a neighbourhood of $0$ in $\mathcal{L}$, and $\dim Q=d-g$. Finally $d-g=0$ if and only if $d\mid n'$, that is, $d^2\mid n$.
+\end{proof}
+
+\section{Rank two}\label{sec:rank2}
+
+\begin{proof}[Proof of Corollary~\ref{cor:rank2}]
+For $k=2$ we have $\zeta_0=e^{i\alpha}$, $\zeta_1=e^{-i\alpha}$, so $V_0$ is the row space of the matrix with columns $(\cos j\alpha,\sin j\alpha)$. If $n$ is odd, $d=1$; if $4\mid n$, then $d=2$ and $g=\gcd(2,n/2)=2$. In both cases $d-g=0$. If $n\equiv2\pmod4$, then $d=2$, $g=1$, and $\mathcal{L}$ consists of the vectors $x_j=(-1)^js$. Here $P(J)=\sin\alpha$ and $B=\{0,n/2\}$, $P(B)=1$. For $I=\{i<j\}$, $x(I)=2s$ if $i,j$ are both even, $-2s$ if both are odd, and $0$ otherwise; for each even $e$ with $2\le e\le n-2$ both signs occur with $j-i=e$. So $x\in Q$ if and only if $2|s|\le\log(\sin e\alpha/\sin\alpha)$ and $2|s|\le-\log\sin e\alpha$ for every even $e$ in that range. The first is tightest at $e=2$, where it reads $2|s|\le\log(2\cos\alpha)$; the second at $e=n/2\pm1$, where $\sin e\alpha=\cos\alpha$. Since $n\ge6$, $2\cos^2\alpha\ge1$, and the condition is $2|s|\le\log(1/\cos\alpha)$. With $\rho=e^{2s}$ the columns of $V_0\cdot D_x$ are $\rho^{(-1)^j/2}(\cos j\alpha,\sin j\alpha)$.
+\end{proof}
+
+Ogranovich's matrix $C$ \cite[(1.2)]{O} is the matrix with columns $(\cos j\alpha,\sin j\alpha)$, and his family $C_q$ \cite[Proposition~3.6]{O} numbers the columns from $1$ to $n$ and multiplies the column numbered $i$ by $q^{(-1)^i}$. In the notation of Corollary~\ref{cor:rank2} this is $\rho=q^{-2}$, so for $n\equiv2\pmod4$ the point $[C_q]$ minimizes $E$ exactly when $\cos(\pi/n)\le q^2\le1/\cos(\pi/n)$, and every minimizer is of this form.
+
+\section{Absolute values and open problems}\label{sec:open}
+
+The question of Berman, Gerasimenko and Zefirov concerns all real matrices. For a real $k\times n$ matrix $X$ with all maximal minors nonzero let
+\[
+E_{\mathrm{abs}}(X)=\frac{\max_I|\Delta_I(X)|}{\min_I|\Delta_I(X)|}.
+\]
+For $k=2$, changing the signs of some columns and permuting them turns any such $X$ into a matrix with positive minors and the same set of absolute values \cite[Proposition~2.14]{O}, so the minimum of $E_{\mathrm{abs}}$ equals that of $E$. This fails for $(k,n)=(3,6)$. Let $\phi=(1+\sqrt5)/2$ and let $X$ have the columns
+\[
+(0,1,\phi),\ (0,1,-\phi),\ (1,\phi,0),\ (1,-\phi,0),\ (\phi,0,1),\ (-\phi,0,1),
+\]
+the directions of the six diagonals of the regular icosahedron. Of its twenty $3\times3$ minors, ten have absolute value $2\phi$ and ten have absolute value $2\phi^2$, so $E_{\mathrm{abs}}(X)=\phi=1.6180\dots$, while $\min E=E(V_0)=3$ on $\Gr_{>0}(3,6)$ by Theorem~\ref{thm:main}. For $(k,n)=(3,7)$ local searches from random starting matrices reach $E_{\mathrm{abs}}<3.13$, while $E(V_0)=4.0489\dots$.
+
+\begin{problem}
+Determine $\min E_{\mathrm{abs}}$ for $3\le k\le n-3$. Is the icosahedral configuration a minimizer for $(k,n)=(3,6)$? Local searches from random starting matrices found no value below $\phi$.
+\end{problem}
+
+The minimizers of $E$ form a polytope in the column-scaling coordinates, and $E$ is not differentiable at them, so the following is natural.
+
+\begin{problem}
+Is there a constant $c=c(k,n)>0$ such that $\log E(V)-\log E(V_0)\ge c\,\mathrm{dist}(V,\mathcal{M})$ for all $V$ near the set $\mathcal{M}$ of minimizers, for a Riemannian distance on $\Gr(k,n)$, or does the growth become quadratic in some directions?
+\end{problem}
+
+\begin{problem}
+Let $A$ be a totally positive $k\times n$ matrix, that is, all of its minors of all sizes are positive. Which matrices minimize the ratio of the largest to the smallest minor of a fixed size $\ell<k$, or of all minors together, with a fixed normalization?
+\end{problem}
+
+\section{Computations}\label{sec:comp}
+
+The following checks were run in double precision; the scripts and their outputs are in the repository listed below. The formula $E(V_0)=P(B)/P(J)$ and the proportionality $\Delta_I(V_0)\propto P(I)$ were checked for $(k,n)=(3,5),(3,6),(3,7),(3,8),(4,7),(4,8)$, where the values are $1.618034$, $3$, $4.048917$, $5.828427$, $4.048917$ and $9.656854$; Of $25$ starting matrices drawn for each pair, those with all minors positive, between $12$ and $19$ per pair, were used as starting points for Nelder--Mead searches, and none of the searches found a value of $E$ below $E(V_0)$. Inequality \eqref{eq:orbit} was tested for every $I$ at $8{,}850$ points of $\Gr_{>0}(k,n)$ for $(k,n)=(3,6),(3,7),(3,8),(4,8),(3,9),(4,9),(5,10)$, obtained as products of random elementary totally positive bidiagonal factors and positive diagonal matrices; the smallest value of $\log(G_I/G_J)-\log(P(I)/P(J))$ was $-4.4\cdot10^{-14}$. Proposition~\ref{prop:GB} was tested at $874$ points obtained in the same way but without the diagonal factor, for the nine pairs $(k,n)$ listed in the next sentence, with smallest value $-2.8\cdot10^{-14}$ for $\log G_B-\log G_I$. For $(k,n)=(2,6),(2,8),(2,10),(3,6),(3,9),(3,12),(4,8),(4,12),(6,12)$ the dimension $d-g$ of Theorem~\ref{thm:class} was compared with the rank of a basis of $\mathcal{L}$, and $E$ was checked to increase under $40$ generic small scalings. For the seven of these pairs with $d>g$, $E$ was checked to stay at $E(V_0)$ under $40$ small scalings in $\mathcal{L}$; for the four pairs with $g>1$, namely $(2,8)$, $(3,9)$, $(4,8)$ and $(6,12)$, it was checked to increase under $d$-periodic scalings outside $\mathcal{L}$. For $n=6,10,14$, $E$ was found equal to $E(V_0)$ at seven values of $\rho$ in the interval of Corollary~\ref{cor:rank2}, including its ends, and larger than $E(V_0)$ just outside it; for $n=8,12,16$ it was found larger than $E(V_0)$ at eight values $\rho\ne1$ between $0.999\cos\alpha$ and $1.001/\cos\alpha$. The three-term relation in the form used in Proposition~\ref{prop:rigid} was checked at random totally positive matrices, and the fact that every $T_r$ in the proof of Proposition~\ref{prop:GB} is a translate of $B$ was checked for all $1\le k<n\le24$. The twenty minors of the icosahedral matrix of Section~\ref{sec:open} were computed directly. For $(k,n)=(3,6)$ and $(3,7)$, Nelder--Mead searches for $E_{\mathrm{abs}}$ over real $3\times n$ matrices from $60$ random starting matrices each gave smallest values $1.6285$ and $3.1282$.
+
+\section*{Credits}
+The problem for $k=2$ is due to Berman, Gerasimenko and Zefirov \cite{BGZ}, and Conjecture~\ref{conj:O} is due to Ogranovich \cite{O}, who proved it for $k=2$, proved uniqueness for $n$ odd and $n=4$, found the family $C_q$ for $n\equiv2\pmod4$, and reduced the absolute-value problem for $k=2$ to the positive one. The point $V_0$, its uniqueness among totally nonnegative points fixed by the shift, and the formula of Lemma~\ref{lem:V0} are due to Karp \cite{K}. The cluster structure and positivity used in Section~\ref{sec:chart} are taken from Arkani-Hamed, Lam and Spradlin \cite{ALS}, and the sorting inequality used in Section~\ref{sec:sort} from Farber and Postnikov \cite{FP}. Theorems~\ref{thm:main} and~\ref{thm:class} for $k\ge3$, Corollary~\ref{cor:rank2} for $4\mid n$, $n\ge8$, the exact interval for $n\equiv2\pmod4$, and the example of Section~\ref{sec:open} are new.
+
+\section*{Funding}
+The research presented in this paper was supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation programme (grant agreement No.~101041711), by the Simons Foundation as part of the Collaboration on the Mathematical and Scientific Foundations of Deep Learning, by Heights Labs, by Convex Nexus Capital, by the Israel Science Foundation (grant number 2258/19), and by the Israel Science Foundation (ISF Grant 4101/25).
+
+\section*{Acknowledgments}
+This work was done by Claude (Anthropic) and Codex (OpenAI) agents, connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}, which many Claude (Anthropic) and Codex (OpenAI) agents build and use. The framework is a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the Brain and Math Brain, see the Math Brain paper~\cite{MathBrainPaper}.
+
+\section*{Code and data availability}
+The check scripts and their outputs are at \url{https://github.com/yspennstate/minimizers-ratio-extreme-plucker-coordinates/tree/checks-v1}. The paper is part of the Math Brain project~\cite{MathBrainRepo}.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+This paper is part of a broader research project on AI systems proving mathematical results. The proofs were found by Codex (OpenAI) and completed by Claude (Anthropic); the checks, the comparison with the literature and the text were produced by Claude (Anthropic). The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+
+\section*{Declaration of competing interest}
+The author holds equity in Heights Labs and in Convex Nexus Capital and has a management role at Convex Nexus Capital. These entities are included in the funding declaration above.
+
+\appendix
+\section{Notation}\label{app:notation}
+\begin{center}
+\begin{tabular}{lp{8.6cm}l}
+\toprule
+Symbol & Meaning & First use\\
+\midrule
+$[n]$, $I+t$ & $\{0,\dots,n-1\}$; the translate of $I$ mod $n$ & Section~\ref{sec:intro}\\
+$\Delta_I$, $E$ & Pl\"ucker coordinate; largest over smallest coordinate & Section~\ref{sec:intro}\\
+$J$, $B$ & $\{0,\dots,k-1\}$; $\{\lfloor jn/k\rfloor:j<k\}$ & Section~\ref{sec:intro}\\
+$P(I)$ & $\prod_{a<b\in I}\sin(\pi(b-a)/n)$ & Section~\ref{sec:intro}\\
+$G_I$ & geometric mean of $\Delta_{I+t}$ over $t\in[n]$ & Section~\ref{sec:intro}\\
+$x(I)$, $D_x$ & $\sum_{i\in I}x_i$; $\mathrm{diag}(e^{x_0},\dots,e^{x_{n-1}})$ & Section~\ref{sec:intro}\\
+$d$, $g$ & $\gcd(k,n)$, $\gcd(d,n/d)$ & Theorem~\ref{thm:class}\\
+$Q$, $\mathcal{L}$ & the polytope of scalings; the subspace containing it & Theorem~\ref{thm:class}\\
+$\alpha$ & $\pi/n$ & Corollary~\ref{cor:rank2}\\
+$\sigma$, $\varepsilon$ & the signed cyclic shift; $(-1)^{k-1}$ & Section~\ref{sec:cyclic}\\
+$\zeta_r$, $w_r$, $V_0$ & eigenvalues and eigenvectors of $\sigma$; the cyclic point & Section~\ref{sec:cyclic}\\
+$W$, $y_j$ & the matrix with rows $w_r$; $e^{-2\pi ij/n}$ & Section~\ref{sec:cyclic}\\
+$\gamma_t$, $\Sigma$, $\delta_t$ & cyclic gaps of $I$; the simplex of real gaps; $i_{t+h}-i_t$ & Section~\ref{sec:cyclic}\\
+$\mathcal{C}$, $L_I$, $\Phi$ & a cluster; Laurent expression of $\Delta_I$; the chart & Section~\ref{sec:chart}\\
+$z$, $p(z)$, $\ell_I$, $h_I$ & log chart coordinates; the point; $\log\Delta_I$; $\log(G_I/G_J)$ & Section~\ref{sec:chart}\\
+$c_S$, $T_r$ & counting function of $S$; rows of a sorted collection & Section~\ref{sec:sort}\\
+$k'$, $n'$ & $k/d$, $n/d$ & Section~\ref{sec:sort}\\
+$u$, $w_I$ & a direction in the chart; the slope of $\ell_I$ along it & Section~\ref{sec:min}\\
+$\hat x$, $\Theta$ & Fourier transform on $\Z/d$; the factor in Lemma~\ref{lem:fourier} & Section~\ref{sec:min}\\
+$\psi(I)$ & $x(I)+\log P(I)$ & Section~\ref{sec:min}\\
+$E_{\mathrm{abs}}$, $\phi$ & ratio of absolute values of minors; the golden ratio & Section~\ref{sec:open}\\
+$\mathcal{M}$ & the set of minimizers of $E$ & Section~\ref{sec:open}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{ALS} N.~Arkani-Hamed, T.~Lam and M.~Spradlin, Positive configuration space, Comm. Math. Phys. 384 (2021) 909--954, doi:10.1007/s00220-021-04041-x; arXiv:2003.03904.
+\bibitem{BGZ} S.~D.~Berman, B.~P.~Gerasimenko and V.~N.~Zefirov, Detection and estimation of the largest error in the determination of a vector by the projection method, Problems of Bionics 38 (1987) 43--50 (in Russian).
+\bibitem{FP} M.~Farber and A.~Postnikov, Arrangements of equal minors in the positive Grassmannian, Adv. Math. 300 (2016) 788--834, doi:10.1016/j.aim.2016.03.031; arXiv:1502.01434.
+\bibitem{K} S.~N.~Karp, Moment curves and cyclic symmetry for positive Grassmannians, Bull. Lond. Math. Soc. 51 (2019) 900--916, doi:10.1112/blms.12280; arXiv:1805.06004.
+\bibitem{O} V.~Ogranovich, The regular polygon minimizes the ratio of Pl\"ucker coordinates on the positive Grassmannian, arXiv:2005.00185v2, 2020.
+\bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026, \url{https://github.com/yspennstate/math-brain-public/tree/5427734deee9be643d6dfbdd5e7d4baeeefe4a4a}.
+\bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research}, October 2026, doi:10.5281/zenodo.24150837, \url{https://github.com/yspennstate/math-brain-public/tree/5427734deee9be643d6dfbdd5e7d4baeeefe4a4a/papers/math-brain-2026-10-24}.
+\bibitem{BrainFramework} Y.~Shmalo, \emph{Brain Framework}, public software repository, 2026, \url{https://github.com/yspennstate/brain-framework-public/tree/46b935d26d5a2893f7790b60466387dd8da47ef5}.
+\end{thebibliography}
+
+\end{document}
